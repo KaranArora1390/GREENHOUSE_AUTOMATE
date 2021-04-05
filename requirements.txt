@@ -1,1 +1,2 @@
-pip install grnhse-api
+grnhse-api
+prometheus_client
