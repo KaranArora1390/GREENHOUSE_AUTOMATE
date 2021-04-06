@@ -17,7 +17,7 @@ class HarvestClient:
         self.hvst = Harvest(API_KEY)
 
     def getGreenHouseJobObject(self, department_id_list):
-        self.es.indices.create(index='greenhouse', ignore=400)
+        self.es.indices.create(index='greenhouse2', ignore=400)
         g_hvst_job_obj = greenhouse_job(self.hvst)
         g_hvst_job_obj.job_processing(department_id_list)
         job_obj=vars(g_hvst_job_obj)
@@ -57,7 +57,7 @@ class HarvestClient:
             'closeJobs':closeJobs,
             'timestamp':datetime.datetime.now()
         }
-        self.es.index(index="greenhouse", body=jsonBody)
+        self.es.index(index="greenhouse2", body=jsonBody)
 
         g_hvst_app_obj = greenhouse_application(self.hvst)
         g_hvst_app_obj.initialise_application_processing(g_hvst_job_obj.Ids_of_jobs_eng)
@@ -73,7 +73,7 @@ class HarvestClient:
             'timestamp':datetime.datetime.now()
         }
 
-        self.es.index(index="greenhouse", body=jsonBody)
+        self.es.index(index="greenhouse2", body=jsonBody)
 
 if __name__=="__main__":
     department_id_list = [4035937002,4035954002,4035955002,4035956002,4035957002,4035966002,4036782002,4049081002]
